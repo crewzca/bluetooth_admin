@@ -1,0 +1,20 @@
+# Rust
+*.rs text eol=lf
+
+# Web frontend
+*.js  text eol=lf
+*.ts  text eol=lf
+*.tsx text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+
+# Config & scripts
+*.yml  text eol=lf
+*.toml text eol=lf
+*.sh   text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Windows scripts or tools
+*.cmd text eol=crlf
+*.bat text eol=crlf
