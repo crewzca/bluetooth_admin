@@ -2,7 +2,7 @@ mod connect;
 
 use connect::device::DeviceInfo;
 use connect::import::get_device_info;
-use connect::remove::remove_samename;
+use connect::remove::remove_blue;
 
 #[tauri::command]
 async fn import_device() -> Vec<DeviceInfo> {
@@ -11,7 +11,7 @@ async fn import_device() -> Vec<DeviceInfo> {
 
 #[tauri::command]
 async fn remove_all(name: String) -> bool {
-    match remove_samename(name).await {
+    match remove_blue(name, true).await {
         Ok(_) => return true,
         Err(e) => {
             eprintln!("一括削除でエラーが発生 {}", e);
@@ -22,7 +22,13 @@ async fn remove_all(name: String) -> bool {
 
 #[tauri::command]
 async fn remove_device(address: String) -> bool {
-    return false;
+    match remove_blue(address, false).await {
+        Ok(_) => return true,
+        Err(e) => {
+            eprintln!("デバイス削除でエラーが発生 {}", e);
+            return false;
+        }
+    }
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
