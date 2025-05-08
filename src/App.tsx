@@ -18,21 +18,25 @@ function App() {
   }
 
   async function removeAll(name: string) {
+    let flg = true;
     if (await invoke('remove_all', { name })) {
       reload();
-      setGreetMsg("一括削除に成功しました");
+      if (flg) { setGreetMsg("一括削除に成功しました") }
     } else {
-      setGreetMsg("一括削除に失敗しました");
+      flg = false;
     }
+    if (!flg) { setGreetMsg("一括削除に失敗しました") }
   }
 
   async function handleClick(address: string) {
+    let flg = true;
     if (await invoke('remove_device', { address })) {
       reload();
-      setGreetMsg("デバイスの削除に成功しました");
+      if (flg) { setGreetMsg("デバイスの削除に成功しました") }
     } else {
-      setGreetMsg("デバイスの削除に失敗しました");
+      flg = false;
     }
+    if (!flg) { setGreetMsg("デバイスの削除に失敗しました") }
   }
 
   useEffect(() => {

@@ -3,8 +3,9 @@ use windows::{
     Devices::{Bluetooth::BluetoothLEDevice, Enumeration::DeviceInformation},
 };
 
-pub async fn remove_blue(rem: String, is_name: bool) -> Result<()> {
+pub async fn remove_ble(rem: String, is_name: bool) -> Result<()> {
     let selector = BluetoothLEDevice::GetDeviceSelector()?;
+
     let devices_op = DeviceInformation::FindAllAsyncAqsFilter(&selector)?;
     let devices = devices_op.await?;
 
